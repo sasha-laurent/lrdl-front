@@ -1,0 +1,13 @@
+.navbar-dark {
+    background-color: green!important;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+.navbar-light {
+    background-color: lightsalmon!important;
+    box-shadow: 0px 5px 5px 0px rgba(100,100,100,0.5);
+}
+
+.container-fluid {
+    padding-top: 10px;
+}
