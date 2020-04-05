@@ -1,6 +1,5 @@
-<h2>Liste de recettes</h2>
+<input type="text" class="form-control" placeholder="Liste des recettes"/>
+
 <ul class="list-group">
-    <app-recipe></app-recipe>
-    <app-recipe></app-recipe>
-    <app-recipe></app-recipe>
+    <app-recipe *ngFor="let recipe of recipes" [recipeName]="recipe.name" [recipeDescription]="recipe.description"></app-recipe>
 </ul>

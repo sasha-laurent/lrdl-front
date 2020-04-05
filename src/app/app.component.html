@@ -1,5 +1,9 @@
 <nav [class]="navTheme">
-    <a class="navbar-brand" href="#">Les Recettes de Lucette</a>
+    <a class="navbar-brand" href="#">
+        <img *ngIf="currentTheme === 0" src="assets/img/flower.png" class="logo" />
+        <img *ngIf="currentTheme === 1" src="assets/img/cat.png" class="logo" />
+        Les Recettes de Lucette
+    </a>
     <button [class]="btnTheme" (click)="onThemeChange()">Mode {{ btnTexts[currentTheme] }}</button>
 </nav>
 <div [class]="containerTheme">
