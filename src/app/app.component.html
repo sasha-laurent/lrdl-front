@@ -9,7 +9,10 @@
 <div [class]="containerTheme">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 offset-md-8 col-lg-4">
+            <div class="col-md-12 col-lg-8">
+                <app-recipe-detail [currentRecipe]="getCurrentRecipe()"></app-recipe-detail>
+            </div>
+            <div class="col-md-12 col-lg-4">
                 <app-recipe-list></app-recipe-list>
             </div>
         </div>

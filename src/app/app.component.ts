@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {RecipeService} from './service/recipe.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  navThemes: string[] = 
+  navThemes: string[] =
     [
       'navbar navbar-expand-lg navbar-light bg-light',
       'navbar navbar-expand-lg navbar-dark bg-dark'
@@ -16,22 +17,22 @@ export class AppComponent {
       'bg-light',
       'bg-dark text-light'
     ];
-  btnThemes: string[] = 
+  btnThemes: string[] =
     [
       'btn ml-auto btn-dark',
       'btn ml-auto btn-light'
     ];
-  btnTexts: string[] = 
+  btnTexts: string[] =
     [
       'sombre',
       'clair'
     ];
-  currentTheme: number = 0;
+  currentTheme = 0;
   navTheme: string = this.navThemes[0];
   containerTheme: string = this.containerThemes[0];
   btnTheme: string = this.btnThemes[0];
 
-  constructor() {
+  constructor(private recipeService: RecipeService) {
   }
 
   onThemeChange() {
@@ -47,5 +48,9 @@ export class AppComponent {
     } else {
       this.currentTheme = 0;
     }
+  }
+
+  public getCurrentRecipe() {
+    return this.recipeService.getCurrentRecipe();
   }
 }

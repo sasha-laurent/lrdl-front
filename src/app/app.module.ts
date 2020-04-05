@@ -5,19 +5,21 @@ import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { FormsModule } from '@angular/forms';
-
+import { RecipeService} from './service/recipe.service';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
-    RecipeComponent
+    RecipeComponent,
+    RecipeDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

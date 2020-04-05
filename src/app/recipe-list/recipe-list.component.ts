@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RecipeService} from '../service/recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,24 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes = [
-    {
-      name: 'Cheesecake',
-      description: 'This is pure sweetness'
-    },
-    {
-      name: 'Oinion rings',
-      description: 'Impress your friends at game night'
-    },
-    {
-      name: 'Poke bowl',
-      description: 'Poke bowl! Go!'
-    }
-  ];
+  recipes: any[];
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) {
+  }
 
   ngOnInit(): void {
+    this.recipes = this.recipeService.getAllRecipes();
   }
 
 }
