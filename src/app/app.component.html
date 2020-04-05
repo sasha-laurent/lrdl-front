@@ -2,9 +2,17 @@
     <a class="navbar-brand" href="#">
         <img *ngIf="currentTheme === 0" src="assets/img/flower.png" class="logo" />
         <img *ngIf="currentTheme === 1" src="assets/img/cat.png" class="logo" />
-        Les Recettes de Lucette
     </a>
-    <button [class]="btnTheme" (click)="onThemeChange()">Mode {{ btnTexts[currentTheme] }}</button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="nav navbar-nav">
+            <li class="nav-item active"><a class="nav-link" href="#">Parcourir</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Créer</a></li>
+        </ul>
+        <button [class]="btnTheme" (click)="onThemeChange()">Mode {{ btnTexts[currentTheme] }}</button>
+    </div>
 </nav>
 <div [class]="containerTheme">
     <div class="container-fluid">

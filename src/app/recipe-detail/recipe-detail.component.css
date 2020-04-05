@@ -1,0 +1,27 @@
+#recipe-book {
+    box-shadow: rgba(0, 0, 0, 0.8) 0 0 5px ;
+    padding: 15px;
+    height: 80vh;
+}
+
+.recipe-detail-text {
+    position: relative;
+    top: -15px;
+    height: 80vh;
+    -webkit-box-shadow: inset -35px 0px 40px -30px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset -35px 0px 40px -30px rgba(0,0,0,0.75);
+    box-shadow: inset -35px 0px 40px -30px rgba(0,0,0,0.75);
+}
+
+.recipe-detail-image {
+    position: relative;
+    top: -15px;
+    height: 80vh;
+    background-image: url(../../assets/img/falafels.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    -webkit-box-shadow: inset 20px 0px 20px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 20px 0px 20px -10px rgba(0,0,0,0.75);
+    box-shadow: inset 20px 0px 20px -10px rgba(0,0,0,0.75);
+}

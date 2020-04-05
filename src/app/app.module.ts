@@ -7,13 +7,15 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { FormsModule } from '@angular/forms';
 import { RecipeService} from './service/recipe.service';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { RecipeNewComponent } from './recipe-new/recipe-new.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
     RecipeComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    RecipeNewComponent
   ],
   imports: [
     BrowserModule,

@@ -3,3 +3,11 @@
 body {
     height: 100vh;
 }
+
+.bg-light .btn-link {
+  color: lightsalmon;
+}
+
+.bg-dark .btn-link {
+  color: green;
+}

@@ -14,10 +14,11 @@ export class RecipeService {
     }
   ];
 
+  // TODO : temporarily set first recipe as default
   private currentRecipe: {
     name: string;
     description: string
-  };
+  } = this.recipes[0];
 
   public getAllRecipes() {
     return this.recipes;

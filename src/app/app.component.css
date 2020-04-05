@@ -1,5 +1,5 @@
 .navbar {
-    height: 10vh;
+    min-height: 10vh;
 }
 
 .navbar-dark {
@@ -20,5 +20,5 @@
 .logo {
     width: 60px;
     height: 60px;
-    
+
 }
