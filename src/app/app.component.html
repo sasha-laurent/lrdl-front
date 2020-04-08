@@ -8,21 +8,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarMain">
         <ul class="nav navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="#">Parcourir</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Créer</a></li>
+            <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="recipes">Parcourir</a></li>
+            <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="write">Créer</a></li>
         </ul>
         <button [class]="btnTheme" (click)="onThemeChange()">Mode {{ btnTexts[currentTheme] }}</button>
     </div>
 </nav>
 <div [class]="containerTheme">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 col-lg-8">
-                <app-recipe-detail [currentRecipe]="getCurrentRecipe()"></app-recipe-detail>
-            </div>
-            <div class="col-md-12 col-lg-4">
-                <app-recipe-list></app-recipe-list>
-            </div>
-        </div>
+        <router-outlet></router-outlet>
     </div>
 </div>
