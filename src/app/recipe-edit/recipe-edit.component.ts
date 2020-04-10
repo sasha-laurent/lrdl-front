@@ -9,15 +9,17 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class RecipeEditComponent implements OnInit {
 
-    recipeId: number;
-    recipeName: string;
-    recipeDescription: string;
+    recipe: {
+        id: number;
+        name: string;
+        description: string;
+    };
 
     constructor(private recipeService: RecipeService, private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.recipeId = this.route.snapshot.params.id;
+        this.recipe = this.recipeService.getRecipe(+this.route.snapshot.params.id);
     }
 
 }

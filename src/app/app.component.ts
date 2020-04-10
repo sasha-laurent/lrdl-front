@@ -1,5 +1,4 @@
-import {Component} from '@angular/core';
-import {RecipeService} from './service/recipe.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-root',

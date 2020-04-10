@@ -11,6 +11,7 @@ import {RecipeNewComponent} from './recipe-new/recipe-new.component';
 import {RouterModule, Routes} from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { TimerComponent } from './timer/timer.component';
 
 const appRoutes: Routes = [
     { path: '', component: RecipesComponent },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
         RecipeDetailComponent,
         RecipeNewComponent,
         RecipesComponent,
-        RecipeEditComponent
+        RecipeEditComponent,
+        TimerComponent
     ],
     imports: [
         BrowserModule,

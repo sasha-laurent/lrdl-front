@@ -11,6 +11,7 @@
             <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="recipes">Parcourir</a></li>
             <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="write">Créer</a></li>
         </ul>
+        <app-timer></app-timer>
         <button [class]="btnTheme" (click)="onThemeChange()">Mode {{ btnTexts[currentTheme] }}</button>
     </div>
 </nav>

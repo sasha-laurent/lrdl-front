@@ -8,7 +8,11 @@ import {RecipeService} from '../service/recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
 
-    @Input() currentRecipe: { name: string; description: string };
+    @Input() currentRecipe: {
+        id: number;
+        name: string;
+        description: string
+    };
 
     constructor(private recipeService: RecipeService) { }
 
