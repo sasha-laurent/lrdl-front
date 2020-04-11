@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RecipeService} from '../service/recipe.service';
 import {ActivatedRoute} from '@angular/router';
+import {Recipe} from '../model/Recipe.model';
 
 @Component({
     selector: 'app-recipe-edit',
@@ -9,11 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class RecipeEditComponent implements OnInit {
 
-    recipe: {
-        id: number;
-        name: string;
-        description: string;
-    };
+    recipe: Recipe;
 
     constructor(private recipeService: RecipeService, private route: ActivatedRoute) {
     }

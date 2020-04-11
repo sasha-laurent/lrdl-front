@@ -2,8 +2,7 @@
 
 <ul class="list-group">
     <app-recipe *ngFor="let recipe of recipes; let i = index"
-                [recipeName]="recipe.name"
-                [recipeDescription]="recipe.description"
+                [recipe]="recipe"
                 [index]="i">
     </app-recipe>
 </ul>
