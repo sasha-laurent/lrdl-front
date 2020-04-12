@@ -12,6 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { TimerComponent } from './timer/timer.component';
+import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
     { path: '', component: RecipesComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         RouterModule.forRoot(appRoutes)
     ],
     providers: [RecipeService],

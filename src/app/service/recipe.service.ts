@@ -1,32 +1,37 @@
 import {Subject} from 'rxjs';
 import {Recipe} from '../model/Recipe.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
+@Injectable()
 export class RecipeService {
-    private recipes: Recipe[] = [
-        {
-            id: 1,
-            name: 'Cheesecake',
-            description: 'This is pure sweetness'
-        },
-        {
-            id: 2,
-            name: 'Oinion rings',
-            description: 'Impress your friends at game night'
-        },
-        {
-            id: 3,
-            name: 'Poke bowl',
-            description: 'Poke bowl! Go!'
-        }
-    ];
+    private recipes: Recipe[] = [];
 
     recipesSubject = new Subject<any>();
 
-    // TODO : temporarily set first recipe as default
-    private currentRecipe: Recipe = this.recipes[0];
+    constructor(private httpClient: HttpClient) {
+    }
+
+    private currentRecipe: Recipe;
 
     public getAllRecipes() {
-        return this.recipes;
+        return this.httpClient
+            .get<Recipe[]>('http://localhost:8000/api/recipes')
+            .subscribe(
+                (response) => {
+                    this.recipes = response;
+                    this.emitRecipeSubject();
+                },
+                (error) => {
+                    console.log('there was an error');
+                    console.log(error);
+                },
+                () => {
+                    if (!this.currentRecipe) {
+                        this.currentRecipe = this.getRecipe(1);
+                    }
+                }
+            );
     }
 
     public getRecipe(id: number): Recipe {

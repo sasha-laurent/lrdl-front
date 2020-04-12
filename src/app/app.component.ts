@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RecipeService} from './service/recipe.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     navThemes: string[] =
         [
             'navbar navbar-expand-lg navbar-light bg-light',
@@ -31,7 +32,11 @@ export class AppComponent {
     containerTheme: string = this.containerThemes[0];
     btnTheme: string = this.btnThemes[0];
 
-    constructor() {
+    constructor(private recipeService: RecipeService) {
+    }
+
+    ngOnInit(): void {
+        this.recipeService.getAllRecipes();
     }
 
     onThemeChange() {

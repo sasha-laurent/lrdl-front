@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {RecipeService} from '../service/recipe.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {RecipeService} from '../service/recipe.service';
     templateUrl: './recipes.component.html',
     styleUrls: ['./recipes.component.css']
 })
-export class RecipesComponent implements OnInit {
+export class RecipesComponent {
 
     constructor(private recipeService: RecipeService) {
     }
@@ -14,8 +14,4 @@ export class RecipesComponent implements OnInit {
     public getCurrentRecipe() {
         return this.recipeService.getCurrentRecipe();
     }
-
-    ngOnInit(): void {
-    }
-
 }
