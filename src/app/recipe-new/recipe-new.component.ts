@@ -19,8 +19,8 @@ export class RecipeNewComponent implements OnInit {
     onSubmit(form: NgForm) {
         const name = form.value.name;
         const description = form.value.description;
-        const newRecipe = this.recipeService.addRecipe(name, description);
-        this.recipeService.setCurrentRecipe(newRecipe.id);
+        const quantity = form.value.quantity;
+        this.recipeService.addRecipe(name, description, quantity);
         this.router.navigate(['/']);
     }
 }

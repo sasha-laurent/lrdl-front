@@ -1,0 +1,12 @@
+.recipe-list {
+    height: 80vh;
+}
+
+.recipe-list ul {
+    overflow-y: scroll;
+    height: 75vh;
+}
+
+.recipe-list input {
+    height: 5vh;
+}

@@ -1,8 +1,10 @@
-<input type="text" class="form-control" placeholder="Liste des recettes"/>
+<div class="recipe-list">
+    <input type="text" class="form-control" placeholder="Liste des recettes"/>
 
-<ul class="list-group">
-    <app-recipe *ngFor="let recipe of recipes; let i = index"
-                [recipe]="recipe"
-                [index]="i+1">
-    </app-recipe>
-</ul>
+    <ul class="list-group">
+        <app-recipe *ngFor="let recipe of recipes; let i = index"
+                    [recipe]="recipe"
+                    [index]="i+1">
+        </app-recipe>
+    </ul>
+</div>

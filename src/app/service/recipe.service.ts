@@ -54,12 +54,36 @@ export class RecipeService {
         this.recipesSubject.next(this.recipes.slice());
     }
 
-    public addRecipe(name: string, description: string): Recipe {
-        const id = this.recipes[(this.recipes.length - 1)].id + 1;
-        const recipeObject = new Recipe(id, name, description);
-        this.recipes.push(recipeObject);
-        this.emitRecipeSubject();
+    public addRecipe(name: string, description: string, quantity: number): void {
+        const formData: {name: string, description: string, quantity: number} = {
+            name,
+            description,
+            quantity,
+        };
 
-        return recipeObject;
+        this.httpClient
+            .post<any>('http://localhost:8000/api/recipe', formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .subscribe(
+                (id) => {
+                    console.log(id);
+                    const recipeObject = new Recipe(id, name, description, quantity);
+                    this.recipes.push(recipeObject);
+                    this.setCurrentRecipe(recipeObject.id);
+                    this.emitRecipeSubject();
+                },
+                (error) => {
+                    console.log('there was an error');
+                    console.log(error);
+                },
+                () => {
+                    if (!this.currentRecipe) {
+                        this.currentRecipe = this.getRecipe(1);
+                    }
+                }
+            );
     }
 }
