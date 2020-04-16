@@ -2,7 +2,7 @@
     <div class="recipe-detail" id="recipe-book">
         <div class="row">
             <div class="col-sm-6 recipe-detail-text">
-                <h4>{{ currentRecipe.name }}
+                <h4>{{ currentRecipe.name }} <em> - Pour {{ currentRecipe.quantity }} personnes</em>
                     <a [routerLink]="'/write/'+[currentRecipe.id]">
                         <button class="btn btn-link">
                             <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -18,5 +18,3 @@
         </div>
     </div>
 </div>
-
-<script src="recipe-detail.js"></script>

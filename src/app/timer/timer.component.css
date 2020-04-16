@@ -1,3 +1,72 @@
 .timer {
     font-family: 'Squada One', cursive;
+    background: #343a40;
+    color: #f65172;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px #343a40;
+    width: 90px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.timer.blinking {
+    animation: blinkingTimer 0.8s infinite;
+}
+
+@keyframes blinkingTimer {
+    0% {
+        border-color: #343a40;
+    }
+    49% {
+        border-color: #343a40;
+    }
+    60% {
+        border-color: #fff;
+    }
+    99% {
+        border-color: #fff;
+    }
+    100% {
+        border-color: #343a40;
+    }
+}
+
+.timer input, .timer .minutes, .timer .seconds {
+    background: transparent;
+    color: inherit;
+    text-align: center;
+    border: none;
+    width: 20px;
+    padding: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.timer .btn {
+    color: inherit;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.timer .btn:hover {
+    color: lightsalmon;
+}
+
+.timer .btn:focus {
+    color: lightsalmon;
+}
+
+.timer .btn:active {
+    color: darkred;
 }

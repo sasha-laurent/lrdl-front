@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
         ];
     btnThemes: string[] =
         [
-            'btn ml-auto btn-dark',
-            'btn ml-auto btn-light'
+            'btn btn-dark',
+            'btn btn-light'
         ];
     btnTexts: string[] =
         [
