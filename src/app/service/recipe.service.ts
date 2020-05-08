@@ -2,21 +2,21 @@ import {Subject} from 'rxjs';
 import {Recipe} from '../model/Recipe.model';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class RecipeService {
     private recipes: Recipe[] = [];
+    private currentRecipe: Recipe;
 
     recipesSubject = new Subject<any>();
 
     constructor(private httpClient: HttpClient) {
     }
 
-    private currentRecipe: Recipe;
-
     public getAllRecipes() {
         return this.httpClient
-            .get<Recipe[]>('http://localhost:8000/api/recipes')
+            .get<Recipe[]>(environment.apiUrl + '/api/recipes')
             .subscribe(
                 (response) => {
                     this.recipes = response;
@@ -28,7 +28,7 @@ export class RecipeService {
                 },
                 () => {
                     if (!this.currentRecipe) {
-                        this.currentRecipe = this.getRecipe(1);
+                        this.currentRecipe = this.getFirstRecipe();
                     }
                 }
             );
@@ -40,6 +40,10 @@ export class RecipeService {
                 return recipe.id === id;
             }
         );
+    }
+
+    public getFirstRecipe(): Recipe {
+        return this.recipes[0] ?? null;
     }
 
     public getCurrentRecipe(): Recipe {
@@ -55,14 +59,14 @@ export class RecipeService {
     }
 
     public addRecipe(name: string, description: string, quantity: number): void {
-        const formData: {name: string, description: string, quantity: number} = {
+        const formData: { name: string, description: string, quantity: number } = {
             name,
             description,
             quantity,
         };
 
         this.httpClient
-            .post<any>('http://localhost:8000/api/recipe', formData, {
+            .post<any>(environment.apiUrl + '/api/recipe', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
