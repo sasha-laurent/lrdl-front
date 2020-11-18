@@ -26,7 +26,6 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     onStartTimer(minutes: number, seconds: number) {
         const total = minutes * 60 + seconds;
-        console.log(total);
 
         if (this.timerSubscription) {
             this.timerSubscription.unsubscribe();

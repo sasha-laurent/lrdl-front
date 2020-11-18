@@ -58,22 +58,18 @@ export class RecipeService {
         this.recipesSubject.next(this.recipes.slice());
     }
 
-    public addRecipe(name: string, description: string, quantity: number): void {
-        const formData: { name: string, description: string, quantity: number } = {
-            name,
-            description,
-            quantity,
-        };
+    public addRecipe(name: string, description: string, quantity: number, image: File): void {
+        const formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('quantity', quantity.toString());
+        formData.append('image', image);
 
         this.httpClient
-            .post<any>(environment.apiUrl + '/api/recipe', formData, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
+            .post<any>(environment.apiUrl + '/api/recipe', formData)
             .subscribe(
                 (id) => {
-                    console.log(id);
                     const recipeObject = new Recipe(id, name, description, quantity);
                     this.recipes.push(recipeObject);
                     this.setCurrentRecipe(recipeObject.id);

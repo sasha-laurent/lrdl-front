@@ -20,6 +20,12 @@
                 </label>
                 <textarea id="description" class="form-control" rows="4" name="description" ngModel required></textarea>
             </div>
+            <div class="form-group">
+                <label for="image">
+                    Image
+                </label>
+                <input id="image" type="file" (change)="onFileChanged($event)" name="image" ngModel required>
+            </div>
             <button class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
         </form>
     </div>

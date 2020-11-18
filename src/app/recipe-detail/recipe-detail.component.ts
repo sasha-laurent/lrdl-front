@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Recipe} from '../model/Recipe.model';
+import {environment} from "../../environments/environment";
 
 @Component({
     selector: 'app-recipe-detail',
@@ -9,4 +10,8 @@ import {Recipe} from '../model/Recipe.model';
 export class RecipeDetailComponent {
 
     @Input() currentRecipe: Recipe;
+
+    public getImagePath() {
+        return environment.apiUrl + '/images/' + this.currentRecipe.imageFilename;
+    }
 }
