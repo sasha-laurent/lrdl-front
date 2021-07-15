@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://lrdl-api.sashalaurent.com'
+    apiUrl: 'https://lrdl-api.sashalaurent.com',
+    defaultImage: 'default.png'
 };

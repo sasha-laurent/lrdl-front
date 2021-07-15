@@ -2,6 +2,7 @@
     <div class="recipe-detail" id="recipe-book">
         <div class="row">
             <div class="col-sm-6 recipe-detail-text">
+                <div class="page-previous" (click)="turnPage(false)" *ngIf="!isFirstPage()"></div>
                 <h4>{{ currentRecipe.name }} <em> - Pour {{ currentRecipe.quantity }} personnes</em>
                     <a [routerLink]="'/write/'+[currentRecipe.id]">
                         <button class="btn btn-link">
@@ -15,6 +16,7 @@
                 <p>{{ currentRecipe.description }}</p></div>
             <div class="col-sm-6 recipe-detail-image">
                 <img [src]="getImagePath()" alt="Test">
+                <div class="page-next" (click)="turnPage()" *ngIf="!isLastPage()"></div>
             </div>
         </div>
     </div>

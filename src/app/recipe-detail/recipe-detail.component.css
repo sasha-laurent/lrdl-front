@@ -32,7 +32,30 @@
 }
 
 .recipe-detail-image img {
-    width: 100%;
-    height: 100%;
+    width: calc( 100% - 30px );
+    height: calc( 100% - 30px );
     object-fit: cover;
+    position: absolute;
+}
+
+.page-next, .page-previous {
+    width: 10%;
+    height: 100%;
+    background: rgba(200, 100, 50, 0);
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+}
+
+.page-next {
+    right: 0;
+}
+
+.page-previous {
+    left: 0;
+}
+
+.page-next:hover, .page-previous:hover {
+    background: rgba(200, 100, 50, 0.3);
+    cursor: pointer;
 }

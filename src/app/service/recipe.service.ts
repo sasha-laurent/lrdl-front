@@ -50,6 +50,22 @@ export class RecipeService {
         return this.currentRecipe;
     }
 
+    public getNextRecipe() {
+        this.currentRecipe = this.recipes[this.recipes.indexOf(this.currentRecipe) + 1];
+    }
+
+    public getPreviousRecipe() {
+        this.currentRecipe = this.recipes[this.recipes.indexOf(this.currentRecipe) - 1];
+    }
+
+    public isFirstRecipe() {
+        return 0 === this.recipes.indexOf(this.currentRecipe);
+    }
+
+    public isLastRecipe() {
+        return this.recipes.length - 1 === this.recipes.indexOf(this.currentRecipe);
+    }
+
     public setCurrentRecipe(id: number): void {
         this.currentRecipe = this.getRecipe(id);
     }
@@ -69,8 +85,7 @@ export class RecipeService {
         this.httpClient
             .post<any>(environment.apiUrl + '/api/recipe', formData)
             .subscribe(
-                (id) => {
-                    const recipeObject = new Recipe(id, name, description, quantity);
+                (recipeObject) => {
                     this.recipes.push(recipeObject);
                     this.setCurrentRecipe(recipeObject.id);
                     this.emitRecipeSubject();
