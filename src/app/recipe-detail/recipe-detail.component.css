@@ -14,8 +14,16 @@
 }
 
 .recipe-detail-text em {
-    color: lightsalmon;
+    /*color: lightsalmon;*/
     font-size: 16px;
+}
+
+.bg-light .recipe-detail-text em {
+    color: lightsalmon;
+}
+
+.bg-dark .recipe-detail-text em {
+    color: green;
 }
 
 .recipe-detail-image {

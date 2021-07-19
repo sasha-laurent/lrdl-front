@@ -22,7 +22,7 @@ export class RecipeListComponent implements OnInit {
                 this.recipes = recipes;
             }
         );
-        this.recipeService.emitRecipeSubject();
+        this.recipeService.emitAllRecipesSubject();
     }
 
 }

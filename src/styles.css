@@ -11,3 +11,11 @@ body {
 .bg-dark .btn-link {
   color: green;
 }
+
+.bg-light em {
+    color: lightsalmon;
+}
+
+.bg-dark em {
+    color: green;
+}

@@ -1,4 +1,4 @@
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {Recipe} from '../model/Recipe.model';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -8,19 +8,71 @@ import {environment} from '../../environments/environment';
 export class RecipeService {
     private recipes: Recipe[] = [];
     private currentRecipe: Recipe;
+    private editedRecipe: Recipe;
 
     recipesSubject = new Subject<any>();
+    editRecipeSubject = new Subject<any>();
 
     constructor(private httpClient: HttpClient) {
     }
 
-    public getAllRecipes() {
+    public postRecipe(recipe: Recipe, image: File): void {
+        const formData = new FormData();
+
+        formData.append('name', recipe.name);
+        formData.append('description', recipe.description);
+        formData.append('quantity', recipe.quantity.toString());
+        formData.append('image', image);
+
+        if (null !== recipe.id) {
+            this.httpClient
+                .post<Recipe>(environment.apiUrl + '/api/recipe/' + recipe.id, formData)
+                .subscribe(
+                    (recipeObject) => {
+                        this.recipes.splice(this.findRecipeIndex(recipeObject), 1, recipeObject);
+                        this.setCurrentRecipe(recipeObject.id);
+                        this.emitAllRecipesSubject();
+                    },
+                    (error) => {
+                        console.log('there was an error');
+                        console.log(error);
+                    },
+                    () => {
+                        if (!this.currentRecipe) {
+                            this.currentRecipe = this.findRecipe(1);
+                        }
+                    }
+                );
+        } else {
+            this.httpClient
+                .post<Recipe>(environment.apiUrl + '/api/recipe', formData)
+                .subscribe(
+                    (recipeObject) => {
+                        this.recipes.push(recipeObject);
+                        this.setCurrentRecipe(recipeObject.id);
+                        this.emitAllRecipesSubject();
+                    },
+                    (error) => {
+                        console.log('there was an error');
+                        console.log(error);
+                    },
+                    () => {
+                        if (!this.currentRecipe) {
+                            this.currentRecipe = this.findRecipe(1);
+                        }
+                    }
+                );
+        }
+
+    }
+
+    public getAllRecipes(): Subscription {
         return this.httpClient
             .get<Recipe[]>(environment.apiUrl + '/api/recipes')
             .subscribe(
                 (response) => {
                     this.recipes = response;
-                    this.emitRecipeSubject();
+                    this.emitAllRecipesSubject();
                 },
                 (error) => {
                     console.log('there was an error');
@@ -34,10 +86,47 @@ export class RecipeService {
             );
     }
 
-    public getRecipe(id: number): Recipe {
-        return this.recipes.find(
+    public getRecipeById(id: string) {
+        return this.httpClient
+            .get<Recipe>(environment.apiUrl + '/api/recipes/' + id)
+            .subscribe(
+                (response) => {
+                    this.editedRecipe = response;
+                    this.emitEditRecipeSubject();
+                },
+                (error) => {
+                    console.log('there was an error');
+                    console.log(error);
+                },
+                () => {
+                    if (!this.editedRecipe) {
+                        this.editedRecipe = null;
+                    }
+                }
+            );
+    }
+
+    public findRecipe(id: number): Recipe {
+        const cachedRecipe = this.recipes.find(
             (recipe) => {
-                return recipe.id === id;
+                return recipe.id === +id;
+            }
+        );
+
+        if (undefined !== cachedRecipe) {
+            return cachedRecipe;
+        }
+
+        // Todo : implement it, does not work for now
+        this.getRecipeById(id + '');
+
+        return this.editedRecipe;
+    }
+
+    public findRecipeIndex(recipe: Recipe) {
+        return this.recipes.findIndex(
+            (recipeCompared) => {
+                return recipe.id === recipeCompared.id;
             }
         );
     }
@@ -67,38 +156,14 @@ export class RecipeService {
     }
 
     public setCurrentRecipe(id: number): void {
-        this.currentRecipe = this.getRecipe(id);
+        this.currentRecipe = this.findRecipe(id);
     }
 
-    public emitRecipeSubject(): void {
+    public emitAllRecipesSubject(): void {
         this.recipesSubject.next(this.recipes.slice());
     }
 
-    public addRecipe(name: string, description: string, quantity: number, image: File): void {
-        const formData = new FormData();
-
-        formData.append('name', name);
-        formData.append('description', description);
-        formData.append('quantity', quantity.toString());
-        formData.append('image', image);
-
-        this.httpClient
-            .post<any>(environment.apiUrl + '/api/recipe', formData)
-            .subscribe(
-                (recipeObject) => {
-                    this.recipes.push(recipeObject);
-                    this.setCurrentRecipe(recipeObject.id);
-                    this.emitRecipeSubject();
-                },
-                (error) => {
-                    console.log('there was an error');
-                    console.log(error);
-                },
-                () => {
-                    if (!this.currentRecipe) {
-                        this.currentRecipe = this.getRecipe(1);
-                    }
-                }
-            );
+    public emitEditRecipeSubject(): void {
+        this.editRecipeSubject.next(this.editedRecipe);
     }
 }

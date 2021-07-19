@@ -7,18 +7,17 @@ import {RecipeComponent} from './recipe/recipe.component';
 import {FormsModule} from '@angular/forms';
 import {RecipeService} from './service/recipe.service';
 import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
-import {RecipeNewComponent} from './recipe-new/recipe-new.component';
+import {RecipeFormComponent} from './recipe-form/recipe-form.component';
 import {RouterModule, Routes} from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { TimerComponent } from './timer/timer.component';
 import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
     { path: '', component: RecipesComponent },
     { path: 'recipes', component: RecipesComponent },
-    { path: 'write', component: RecipeNewComponent },
-    { path: 'write/:id', component: RecipeEditComponent }
+    { path: 'write', component: RecipeFormComponent },
+    { path: 'write/:id', component: RecipeFormComponent }
 ];
 
 @NgModule({
@@ -27,9 +26,8 @@ const appRoutes: Routes = [
         RecipeListComponent,
         RecipeComponent,
         RecipeDetailComponent,
-        RecipeNewComponent,
+        RecipeFormComponent,
         RecipesComponent,
-        RecipeEditComponent,
         TimerComponent
     ],
     imports: [
